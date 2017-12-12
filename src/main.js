@@ -4,10 +4,11 @@ function loadAllRepos(apiUrl, user, array, callback) {
   const repoEndPoint = apiUrl + user + '/repos';
   axios.get(repoEndPoint)
     .then((response) => {
-      response.data.forEach((repo) => {
-        array.push(repo);
+      const repoList = response.data;
+      repoList.forEach((repoData, i) => {
+        let r = new Repo(repoData, i);
+        callback(r);
       });
-      callback(array);
     })
     .catch((error) => {
       console.log(error);
@@ -26,10 +27,33 @@ class Repo {
   }
 }
 
-function renderRepos(repoList) {
-  repoList.forEach((repoData, i) => {
-    let r = new Repo(repoData, i);
-    console.log(r);
+function createUlList (parent, text, bool) {
+  let ul = document.createElement('ul');
+  ul.id = text;
+  if (bool) {
+    ul.textContent = text;
+  }
+  parent.append(ul);
+}
+
+function createLiItem (parent, text) {
+  let li = document.createElement('li');
+  li.id = text;
+  li.textContent = text;
+  parent.append(li);
+}
+
+function renderRepos(repo) {
+  createUlList(root, repo.id, true);
+  let ulParent = document.getElementById(repo.id);
+  let idChild = repo.id + 0.1;
+  createUlList(ulParent, idChild, false);
+  let ulChild = document.getElementById(idChild);
+  Object.keys(repo).forEach((key, i) => {
+    let textContent = key + ': ' + repo[key];
+    if (i !== 0) {
+      createLiItem(ulChild, textContent);
+    }
   });
 }
 
