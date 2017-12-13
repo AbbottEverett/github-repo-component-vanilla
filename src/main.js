@@ -1,14 +1,18 @@
-let root = document.getElementById('root');
+const root = document.getElementById('root');
+const button = document.querySelector('button');
+const apiUrl = 'https://api.github.com/users/';
+const user = 'CADBOT';
+let repoList = [];
 
 function loadAllRepos(apiUrl, user, array, callback) {
   const repoEndPoint = apiUrl + user + '/repos';
   axios.get(repoEndPoint)
     .then((response) => {
-      const repoList = response.data;
-      repoList.forEach((repoData, i) => {
-        let r = new Repo(repoData, i);
-        callback(r);
+      // const repoList = response.data;
+      repoList = response.data.map((repoData, i) => {
+        return new Repo(repoData, i);
       });
+      callback(repoList);
     })
     .catch((error) => {
       console.log(error);
@@ -22,39 +26,40 @@ class Repo {
     this.language = repoData.language;
     this.html_url = repoData.html_url;
     this.fork = repoData.fork;
+    this.star_count = repoData.stargazers_count;
+    this.watchers = repoData.watchers_count;
     this.description = repoData.description;
-    this.stars = repoData.stargazers_count;
+    this.forks_count = repoData.forks_count;
+  }
+  render() {
+    let repo = document.createDocumentFragment();
+    let ul = document.createElement('ul');
+    repo.append(ul);
+    Object.keys(this).forEach((key) =>{
+      let li = document.createElement('li');
+      li.textContent = key + ': ' + this[key];
+      ul.append(li);
+    });
+    return repo;
   }
 }
 
-function createUlList (parent, text, bool) {
-  let ul = document.createElement('ul');
-  ul.id = text;
-  if (bool) {
-    ul.textContent = text;
+function renderRepos(repoList) {
+  let currentRepoList = document.getElementById('repoList');
+  if (currentRepoList) {
+    currentRepoList.remove();
   }
-  parent.append(ul);
-}
-
-function createLiItem (parent, text) {
-  let li = document.createElement('li');
-  li.id = text;
-  li.textContent = text;
-  parent.append(li);
-}
-
-function renderRepos(repo) {
-  createUlList(root, repo.id, true);
-  let ulParent = document.getElementById(repo.id);
-  let idChild = repo.id + 0.1;
-  createUlList(ulParent, idChild, false);
-  let ulChild = document.getElementById(idChild);
-  Object.keys(repo).forEach((key, i) => {
-    let textContent = key + ': ' + repo[key];
-    if (i !== 0) {
-      createLiItem(ulChild, textContent);
-    }
+  let div = document.createElement('div');
+  div.id = "repoList";
+  root.append(div);
+  repoList.forEach((repo) => {
+    div.append(repo.render());
   });
 }
 
-loadAllRepos('https://api.github.com/users/', 'AbbottEverett', [], renderRepos);
+loadAllRepos(apiUrl, user, repoList, renderRepos);
+
+button.addEventListener('click', () => {
+  repoList.reverse();
+  renderRepos(repoList);
+});
