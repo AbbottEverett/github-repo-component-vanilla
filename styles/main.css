@@ -4,6 +4,21 @@ body {
   font-weight: 300;
 }
 
+ul {
+	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-self: flex-start;
+	padding: 0;
+	margin: 10px;
+}
+
+li {
+	margin: 5px;
+}
+
 #root {
 	display: flex;
 	flex-direction: column;
@@ -20,4 +35,7 @@ body {
 .repo {
 	display: flex;
 	width: 400px;
+	border: 4px solid black;
+	border-radius: 20px;
+	margin: 15px;
 }
