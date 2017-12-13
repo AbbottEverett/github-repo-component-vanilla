@@ -1,7 +1,7 @@
 const root = document.getElementById('root');
 const button = document.querySelector('button');
 const apiUrl = 'https://api.github.com/users/';
-const user = 'CADBOT';
+const user = 'abbotteverett';
 let repoList = [];
 
 function loadAllRepos(apiUrl, user, array, callback) {
@@ -33,8 +33,11 @@ class Repo {
   }
   render() {
     let repo = document.createDocumentFragment();
+    let div = document.createElement('div');
+    div.classList.add('repo');
+    repo.append(div);
     let ul = document.createElement('ul');
-    repo.append(ul);
+    div.append(ul);
     Object.keys(this).forEach((key) =>{
       let li = document.createElement('li');
       li.textContent = key + ': ' + this[key];

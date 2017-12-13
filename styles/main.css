@@ -1,3 +1,23 @@
-h1 { 
-	 font-family: Helvetica, sans serif;
+body {
+	box-sizing: border-box;
+	font-family: Roboto, sans-serif;
+  font-weight: 300;
+}
+
+#root {
+	display: flex;
+	flex-direction: column;
+	margin 0 auto;
+}
+
+#repoList {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.repo {
+	display: flex;
+	width: 400px;
 }
