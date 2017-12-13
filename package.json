@@ -1,0 +1,23 @@
+{
+  "name": "github-repo-component-vanilla",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbbottEverett/github-repo-component-vanilla.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbbottEverett/github-repo-component-vanilla/issues"
+  },
+  "homepage": "https://github.com/AbbottEverett/github-repo-component-vanilla#readme",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}
