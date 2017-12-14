@@ -1,11 +1,10 @@
-function getRepoDataForUser(repoEndPoint, callback) {
+function getRepoDataForUser(repoEndPoint, array, callback) {
   axios.get(repoEndPoint)
     .then((response) => {
-      // const repoList = response.data;
-      repoList = response.data.map((repoData, i) => {
+      array = response.data.map((repoData, i) => {
         return new Repo(repoData, i);
       });
-      callback(repoList);
+      callback(array);
     })
     .catch((error) => {
       console.log(error);
