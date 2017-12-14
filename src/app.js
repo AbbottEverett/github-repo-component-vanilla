@@ -1,4 +1,10 @@
 const root = document.getElementById('root');
-const repoList = new RepoList('abbotteverett');
+const input = document.querySelector('input');
+const form = document.querySelector('form');
 
-repoList.loadAllRepos(repoList.apiUrl, repoList.repoList, repoList.renderAllRepos);
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  let user = input.value;
+  const newRepoList = new RepoList(user);
+  newRepoList.loadAllRepos(newRepoList.apiUrl, newRepoList.repoList, newRepoList.renderAllRepos);
+});

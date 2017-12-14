@@ -2,6 +2,8 @@ body {
 	box-sizing: border-box;
 	font-family: Roboto, sans-serif;
   font-weight: 300;
+	/* display: flex;
+	justify-content: flex-end; */
 }
 
 ul {
@@ -40,16 +42,18 @@ h3 {
 
 #root {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: flex-start;
 	margin 0 auto;
 }
 
-#repoList {
+.repoList {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	width: 50%
+	width: 25%
 }
 
 .repo {

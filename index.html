@@ -5,14 +5,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>title</title>
 		<script src="https://use.fontawesome.com/c288d722e1.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 		<link rel="stylesheet" href="./styles/main.css" />
 	</head>
 	<body>
+		<form class="form-group">
+			<input type="text" class="form-control" placeholder="put in Github username"/>
+			<button type="submit" class="btn btn-primary">Add User</button>
+		</form>
 		<div id="root">
-			<form>
-				<input type="text" />
-				<button>Add User</button>
-			</form>
+
 		</div>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		<script src="./src/services/data-service.js"></script>

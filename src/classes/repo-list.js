@@ -11,7 +11,12 @@ class RepoList {
     getRepoDataForUser(apiUrl, array, callback);
   }
   renderAllRepos(repoList) {
+    // let currentRepoList = document.querySelector('.repoList');
+    // if (currentRepoList) {
+    //   currentRepoList.remove();
+    // }
     let div = document.createElement('div');
+    div.classList = 'repoList';
     repoList.forEach((repo) => {
       div.append(repo.renderRepo());
     });
