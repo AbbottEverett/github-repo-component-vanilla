@@ -3,7 +3,6 @@ class App {
     this.form = null;
     this.userList = null;
     this.docRoot = document.getElementById('root');
-    this.searchVal = '';
   }
   init() {
     this.createForm();
@@ -11,6 +10,9 @@ class App {
   createForm() {
     this.form = new Form();
     this.form.renderForm(this.docRoot);
+  }
+  receiveSearchInput() {
+    this.searchVal = this.form.submitVal;
   }
 }
 

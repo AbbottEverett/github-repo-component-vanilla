@@ -1,16 +1,20 @@
 class Form {
   constructor() {
     this.formGroup = document.createElement('form');
+    this.searchVal = '';
   }
 
   formSubmit(event) {
     event.preventDefault();
     let input = document.getElementById('search-input');
-    app.searchVal = input.value;
+    this.searchVal = input.value;
+    // Run data service here
+    let val = getDataForUser(this.searchVal);
+    console.log(val);
   }
 
   renderForm(parent) {
-    // Create Elements
+    // Create Form Elements
     const formContainer = document.createElement('div');
     const label = document.createElement('label');
     const input = document.createElement('input');
