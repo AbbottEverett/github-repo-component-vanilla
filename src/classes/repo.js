@@ -63,21 +63,18 @@ class Repo {
     }
     return listItem;
   }
-  createAllListItems(list){
-    // Consider putting ul creation in createAllListItems
+  createAllListItems(){
+    let ul = this.createElement('ul');
     // potentially not extendable, consider a different loop
     Object.keys(this).forEach((key, i) => {
       let li = this.createListItem(key, i);
-      list.append(li);
+      ul.append(li);
     });
+    return ul;
   }
   renderRepo() {
-    let repo = document.createDocumentFragment();
     let div = this.createElement('div', undefined, 'repo');
-    let ul = this.createElement('ul');
-    repo.append(div);
-    div.append(ul);
-    this.createAllListItems(ul);
+    div.append(this.createAllListItems());
     return div;
   }
 }

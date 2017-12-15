@@ -11,3 +11,14 @@ function getRepoDataForUser(repoEndPoint, array, callback) {
     }
   );
 }
+
+function getUserData (userEndPoint, array, callback) {
+  axios.get(userEndPoint)
+    .then((response) => {
+      array.push(new UserInfoCard(response.data));
+      callback(array[array.length-1]);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+}
