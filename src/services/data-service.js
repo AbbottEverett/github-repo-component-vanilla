@@ -24,6 +24,7 @@ function getDataForUser(user) {
 }
 
 function resolveUserPromises(promiseArray) {
+  // consider map
   let data = [];
   Promise.all(promiseArray).then((responses)=>{
     responses.forEach((response) => {

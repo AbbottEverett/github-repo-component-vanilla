@@ -1,16 +1,14 @@
 class Form {
-  constructor() {
+  constructor(callback) {
     this.formGroup = document.createElement('form');
-    this.searchVal = '';
+    this.createUser = callback;
   }
 
   formSubmit(event) {
     event.preventDefault();
     let input = document.getElementById('search-input');
-    this.searchVal = input.value;
     // Run data service here
-    let val = getDataForUser(this.searchVal);
-    console.log(val);
+    this.createUser(getDataForUser(input.value));
   }
 
   renderForm(parent) {
@@ -31,7 +29,7 @@ class Form {
     button.textContent = 'Find User';
 
     // Add Event Listeners
-    this.formGroup.addEventListener('submit', this.formSubmit);
+    this.formGroup.addEventListener('submit', this.formSubmit.bind(this));
 
     // Append Elements to parent
     formContainer.appendChild(label);
