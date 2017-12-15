@@ -1,10 +1,18 @@
-const root = document.getElementById('root');
-const input = document.querySelector('input');
-const form = document.querySelector('form');
+class App {
+  constructor() {
+    this.form = null;
+    this.userList = null;
+    this.docRoot = document.getElementById('root');
+    this.searchVal = '';
+  }
+  init() {
+    this.createForm();
+  }
+  createForm() {
+    this.form = new Form();
+    this.form.renderForm(this.docRoot);
+  }
+}
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  let user = input.value;
-  const newRepoList = new RepoList(user);
-  newRepoList.loadAllRepos(newRepoList.apiUrl, newRepoList.repoList, newRepoList.renderAllRepos);
-});
+let app = new App();
+app.init();
