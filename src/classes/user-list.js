@@ -19,7 +19,7 @@ class UserListComponent {
     userContainer.id = 'userListContainer';
     this.userList.forEach((user, i) => {
       let userCard = document.createElement('div');
-      userCard.textContent = i;
+      userCard.classList = 'card user-card';
       userCard.appendChild(this.renderUser(user));
       userCard.appendChild(this.renderRepos(user));
       userCard.addEventListener('click', this.removeFromUserList);
@@ -29,24 +29,37 @@ class UserListComponent {
   }
   renderUser(user) {
     // Create User Elements
-    let userCard = document.createElement('div');
-    let p = document.createElement('p');
+    let userSummary = document.createElement('div');
+    
+    let textTitle = document.createElement('div');
     let img = document.createElement('img');
+    let name = document.createElement('h2');
+    let location = document.createElement('div');
+    let bio = document.createElement('div');
 
     // Set Element Attributes
-    p.textContent = user.userInfo.name;
+    userSummary.classList = 'card-header user-card-header';
+    textTitle.classList = 'user-card-title';
     img.setAttribute('src', user.userInfo.avatar_url);
-    img.setAttribute('width', '75px;');
+    img.classList = 'user-icon';
+    name.textContent = user.userInfo.name;
+    location.textContent = user.userInfo.location;
+    bio.textContent = user.userInfo.bio;
+    bio.classList = 'user-card-bio';
 
     // Append Elements to User Card
-    userCard.appendChild(img);
-    userCard.appendChild(p);
+    textTitle.appendChild(name);
+    textTitle.appendChild(location);
+    userSummary.appendChild(img);
+    userSummary.appendChild(textTitle);
+    userSummary.appendChild(bio);
 
-    return userCard;
+    return userSummary;
   }
   renderRepos(user) {
     let repoListData = user.repoList;
     let repoListContainer = document.createElement('div');
+    repoListContainer.classList = 'card-body';
     repoListData.forEach((repo) => {
       let repoBox = document.createElement('span');
       repoBox.textContent = repo.name + '   |   ';

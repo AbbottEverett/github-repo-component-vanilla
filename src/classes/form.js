@@ -9,6 +9,7 @@ class Form {
     let input = document.getElementById('search-input');
     // Run data service here
     getDataForUser(input.value).then(this.createUser);
+    input.value = '';
   }
 
   renderForm(parent) {

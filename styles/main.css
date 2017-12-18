@@ -12,3 +12,43 @@ body {
 	align-items: flex-start;
 	margin 0 auto; */
 }
+
+#userListContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.user-card {
+	max-width: 450px;
+	margin: 10px;
+}
+
+.img-header-placeholder {
+	
+}
+
+.user-icon {
+	width: 75px;
+	height: 75px;
+	border-radius: 10px;
+	margin-right: 15px;
+	margin-bottom: 15px;
+}
+
+.user-card-header {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.user-card-title {
+	display: flex;
+	flex-direction: column;
+	/* align-items: flex-end; */
+}
+
+.user-card-bio {
+	text-align: justify;
+}
