@@ -21,7 +21,7 @@ body {
 }
 
 .user-card {
-	width: 450px;
+	width: 475px;
 	margin: 10px;
 }
 
@@ -29,20 +29,21 @@ body {
 	width: 75px;
 	height: 75px;
 	border-radius: 10px;
-	margin-right: 15px;
 	margin-bottom: 15px;
 }
-
+.remove-card-button {
+	height: 40px;
+}
 .user-card-header {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	flex-direction: column;
 }
 
 .user-card-title {
 	display: flex;
-	flex-direction: column;
-	/* align-items: flex-end; */
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .user-card-bio {
@@ -51,6 +52,11 @@ body {
 
 .repo-container {
 	border: 1px solid black;
+	text-align: center;
+	background-color: blue;
 	color: white;
-	background-color: grey;
+}
+
+.repo-item {
+
 }

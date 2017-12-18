@@ -24,54 +24,75 @@ class UserListComponent {
       let userCard = document.createElement('div');
       userCard.classList = 'card user-card';
       userCard.id = 'card' + i;
-      userCard.appendChild(this.renderUser(user));
+
+      userCard.appendChild(this.renderUser(user, userCard));
       userCard.appendChild(this.renderRepoCarousel(user, i));
-      userCard.addEventListener('click', ()=>{this.removeFromUserList(userCard)}, false);
+      //userCard.addEventListener('click', ()=>{this.removeFromUserList(userCard)}, false);
       userContainer.appendChild(userCard);
     });
     parent.appendChild(userContainer);
   }
-  renderUser(user) {
+  renderUser(user, userCard) {
     // Consider restructuring the header
 
     // Create User Elements
     let userSummary = document.createElement('div');
-
-    let textTitle = document.createElement('div');
+    let userTitleContainer = document.createElement('div');
+    let userTitle = document.createElement('div');
     let img = document.createElement('img');
     let name = document.createElement('h2');
     let location = document.createElement('div');
+    let button = document.createElement('button');
     let bio = document.createElement('div');
 
     // Set Element Attributes
     userSummary.classList = 'card-header user-card-header';
-    textTitle.classList = 'user-card-title';
+    userTitleContainer.classList = 'user-card-title';
     img.setAttribute('src', user.userInfo.avatar_url);
     img.classList = 'user-icon';
     name.textContent = user.userInfo.name;
     location.textContent = user.userInfo.location;
+    button.classList = 'btn btn-danger remove-card-button';
+    button.textContent = 'X';
     bio.textContent = user.userInfo.bio;
     bio.classList = 'user-card-bio';
 
+    button.addEventListener('click', ()=>{this.removeFromUserList(userCard)}, false);
+
     // Append Elements to User Card
-    textTitle.appendChild(name);
-    textTitle.appendChild(location);
-    userSummary.appendChild(img);
-    userSummary.appendChild(textTitle);
+    userTitle.appendChild(name);
+    userTitle.appendChild(location);
+    userTitleContainer.appendChild(img);
+    userTitleContainer.appendChild(userTitle);
+    userTitleContainer.appendChild(button);
+    userSummary.appendChild(userTitleContainer);
     userSummary.appendChild(bio);
 
     return userSummary;
   }
   renderRepos(repoList, parent) {
     repoList.forEach((repo, i) => {
+      // Create elements
       let itemContainer = document.createElement('div');
       let item = document.createElement('div');
+      let name = document.createElement('p');
+      let language = document.createElement('p');
+      let description = document.createElement('p');
+
+
       itemContainer.classList = 'carousel-item repo-container';
       if (i === 0) {
         itemContainer.classList.add('active');
       }
-      item.classList = 'd-block w-100';
-      item.textContent = repo.name;
+      item.classList = 'd-block w-100 repo-item';
+
+      name.textContent = repo.name;
+      language.textContent = repo.language;
+      description.textContent = repo.description;
+
+      item.appendChild(name);
+      item.appendChild(language);
+      item.appendChild(description);
       itemContainer.appendChild(item);
       parent.appendChild(itemContainer);
     });
