@@ -2,7 +2,6 @@ class App {
   constructor() {
     this.form = null;
     this.userListComponent = null;
-    this.userList = [];
     this.docRoot = document.getElementById('root');
   }
   init() {
@@ -10,7 +9,6 @@ class App {
     this.createForm();
   }
   createForm() {
-    // this.form = new Form(this.createUserListComponent.bind(this));
     this.form = new Form(this.userListComponent.addToUserList.bind(this.userListComponent));
     this.form.renderForm(this.docRoot);
   }

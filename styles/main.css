@@ -21,12 +21,8 @@ body {
 }
 
 .user-card {
-	max-width: 450px;
+	width: 450px;
 	margin: 10px;
-}
-
-.img-header-placeholder {
-
 }
 
 .user-icon {
@@ -55,5 +51,6 @@ body {
 
 .repo-container {
 	border: 1px solid black;
-	background-color: green;
+	color: white;
+	background-color: grey;
 }
