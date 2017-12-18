@@ -7,9 +7,6 @@ class UserListComponent {
     this.userList.push(user);
     this.renderUserListComponent(this.parent);
   }
-  removeFromUserList(e){
-    console.log(userCard.textContent);
-  }
   renderUserListComponent(parent) {
     // Clears existing container
     if (this.userList.length > 1) {
@@ -30,7 +27,7 @@ class UserListComponent {
   renderUser(user) {
     // Create User Elements
     let userSummary = document.createElement('div');
-    
+
     let textTitle = document.createElement('div');
     let img = document.createElement('img');
     let name = document.createElement('h2');
@@ -57,14 +54,59 @@ class UserListComponent {
     return userSummary;
   }
   renderRepos(user) {
+    // Extract out sections into functions
+    // Get id for each user for carousel functionality
+    // add more carousel data
     let repoListData = user.repoList;
     let repoListContainer = document.createElement('div');
+    let repoCarousel = document.createElement('div');
+    let repoCarouselInner = document.createElement('div');
+    let carouselControlLeft = document.createElement('a');
+    let prevIcon = document.createElement('span');
+    let carouselControlRight = document.createElement('a');
+    let nextIcon = document.createElement('span');
+
     repoListContainer.classList = 'card-body';
-    repoListData.forEach((repo) => {
-      let repoBox = document.createElement('span');
-      repoBox.textContent = repo.name + '   |   ';
-      repoListContainer.appendChild(repoBox);
+    repoCarousel.classList = 'carousel slide';
+    repoCarousel.setAttribute('data-ride', 'carousel');
+    repoCarousel.id = 0;
+    repoCarouselInner.classList = 'carousel-inner';
+
+    carouselControlLeft.classList = 'carousel-control-prev';
+    carouselControlLeft.setAttribute('href', '#0');
+    carouselControlLeft.setAttribute('role', 'button');
+    carouselControlLeft.setAttribute('data-slide', 'prev');
+    prevIcon.classList = 'carousel-control-prev-icon';
+    prevIcon.setAttribute('aria-hidden', 'true');
+
+    carouselControlRight.classList = 'carousel-control-next';
+    carouselControlRight.setAttribute('href', '#0');
+    carouselControlRight.setAttribute('role', 'button');
+    carouselControlRight.setAttribute('data-slide', 'next');
+    nextIcon.classList = 'carousel-control-next-icon';
+    nextIcon.setAttribute('aria-hidden', 'true');
+
+    repoListData.forEach((repo, i) => {
+      let itemContainer = document.createElement('div');
+      let item = document.createElement('div');
+      itemContainer.classList = 'carousel-item repo-container';
+      if (i === 0) {
+        itemContainer.classList.add('active');
+      }
+      item.classList = 'd-block w-100';
+      item.textContent = repo.name;
+      itemContainer.appendChild(item);
+      repoCarouselInner.appendChild(itemContainer);
     });
+
+    carouselControlLeft.appendChild(prevIcon);
+    carouselControlRight.appendChild(nextIcon);
+
+    repoCarousel.appendChild(repoCarouselInner);
+    repoCarousel.appendChild(carouselControlLeft);
+    repoCarousel.appendChild(carouselControlRight);
+    repoListContainer.appendChild(repoCarousel);
+
     return repoListContainer;
   }
 }

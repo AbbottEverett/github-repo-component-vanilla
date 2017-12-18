@@ -26,7 +26,7 @@ body {
 }
 
 .img-header-placeholder {
-	
+
 }
 
 .user-icon {
@@ -51,4 +51,9 @@ body {
 
 .user-card-bio {
 	text-align: justify;
+}
+
+.repo-container {
+	border: 1px solid black;
+	background-color: green;
 }
