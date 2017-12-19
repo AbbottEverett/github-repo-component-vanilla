@@ -43,6 +43,7 @@ class UserListComponent {
     let name = document.createElement('h2');
     let location = document.createElement('div');
     let button = document.createElement('button');
+    let icon = document.createElement('i');
     let bio = document.createElement('div');
 
     // Set Element Attributes
@@ -53,15 +54,19 @@ class UserListComponent {
     name.textContent = user.userInfo.name;
     location.textContent = user.userInfo.location;
     button.classList = 'btn btn-danger remove-card-button';
-    button.textContent = 'X';
+    icon.classList = 'fa fa-times';
+    icon.setAttribute('aria-hidden', true);
     bio.textContent = user.userInfo.bio;
     bio.classList = 'user-card-bio';
 
     button.addEventListener('click', ()=>{this.removeFromUserList(userCard)}, false);
 
     // Append Elements to User Card
+    button.appendChild(icon);
     userTitle.appendChild(name);
-    userTitle.appendChild(location);
+    if (user.userInfo.location) {
+      userTitle.appendChild(location);
+    }
     userTitleContainer.appendChild(img);
     userTitleContainer.appendChild(userTitle);
     userTitleContainer.appendChild(button);
@@ -75,8 +80,12 @@ class UserListComponent {
       // Create elements
       let itemContainer = document.createElement('div');
       let item = document.createElement('div');
-      let name = document.createElement('p');
-      let language = document.createElement('p');
+      let header = document.createElement('div');
+      let isFork = document.createElement('i');
+      let name = document.createElement('h4');
+      let subHeader = document.createElement('div');
+      let language = document.createElement('h6');
+      let lastUpdated = document.createElement('span');
       let description = document.createElement('p');
 
 
@@ -84,22 +93,41 @@ class UserListComponent {
       if (i === 0) {
         itemContainer.classList.add('active');
       }
-      item.classList = 'd-block w-100 repo-item';
+      item.classList = 'd-block card repo-content';
+      header.classList = 'repo-header';
+      subHeader.classList = 'repo-sub-header';
+      if (repo.fork) {
+        isFork.classList = 'fa fa-code-fork fa-2x repo-icon';
+      } else {
+        isFork.classList = 'fa fa-book fa-2x repo-icon';
+      }
 
+      isFork.setAttribute('aria-hidden', true);
+      name.classList = 'card-title';
       name.textContent = repo.name;
+      language.classList = 'card-subtitle language';
       language.textContent = repo.language;
+      // Formats date properly
+      let date = new Date(repo.updated_at);
+      date = date.toString().split(' ').slice(1, 4).join(' ');
+      lastUpdated.textContent = 'Updated: ' + date;
       description.textContent = repo.description;
 
-      item.appendChild(name);
-      item.appendChild(language);
+      header.appendChild(isFork);
+      header.appendChild(name);
+      item.appendChild(header);
+      if (repo.language) {
+        subHeader.appendChild(language);
+      }
+      subHeader.appendChild(lastUpdated);
+      item.appendChild(subHeader);
       item.appendChild(description);
       itemContainer.appendChild(item);
       parent.appendChild(itemContainer);
     });
   }
   renderRepoCarousel(user, i) {
-    // Extract out sections into functions
-    // add more carousel data
+
     let repoListContainer = document.createElement('div');
     let repoCarousel = document.createElement('div');
     let repoCarouselInner = document.createElement('div');
@@ -108,20 +136,20 @@ class UserListComponent {
     let carouselControlRight = document.createElement('a');
     let nextIcon = document.createElement('span');
 
-    repoListContainer.classList = 'card-body';
+    repoListContainer.classList = 'card-body repo-list-container';
     repoCarousel.classList = 'carousel slide';
     repoCarousel.setAttribute('data-interval', 'false');
     repoCarousel.id = i;
     repoCarouselInner.classList = 'carousel-inner';
 
-    carouselControlLeft.classList = 'carousel-control-prev';
+    carouselControlLeft.classList = 'carousel-control-prev slide-icon';
     carouselControlLeft.setAttribute('href', `#${i}`);
     carouselControlLeft.setAttribute('role', 'button');
     carouselControlLeft.setAttribute('data-slide', 'prev');
     prevIcon.classList = 'carousel-control-prev-icon';
     prevIcon.setAttribute('aria-hidden', 'true');
 
-    carouselControlRight.classList = 'carousel-control-next';
+    carouselControlRight.classList = 'carousel-control-next slide-icon';
     carouselControlRight.setAttribute('href', `#${i}`);
     carouselControlRight.setAttribute('role', 'button');
     carouselControlRight.setAttribute('data-slide', 'next');
@@ -132,7 +160,6 @@ class UserListComponent {
 
     carouselControlLeft.appendChild(prevIcon);
     carouselControlRight.appendChild(nextIcon);
-
     repoCarousel.appendChild(repoCarouselInner);
     repoCarousel.appendChild(carouselControlLeft);
     repoCarousel.appendChild(carouselControlRight);

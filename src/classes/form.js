@@ -38,7 +38,7 @@ class Form {
     button.classList = 'btn btn-primary';
     button.setAttribute('type', 'submit');
     button.textContent = 'Find User';
-
+    this.formGroup.classList = 'doc-form';
     // Add Event Listeners
     this.formGroup.addEventListener('submit', this.formSubmit.bind(this));
 
