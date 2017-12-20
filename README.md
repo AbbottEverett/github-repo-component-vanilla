@@ -3,7 +3,7 @@ A Javascript component that lists all your repositories in a visually interestin
 
 ## Screenshot
 
-![Alt text](app-Screenshot.png?raw=true "Picture of github-repo-component-vanilla")
+![Alt text](app-screenshot.png?raw=true "Picture of github-repo-component-vanilla")
 
 Live Demo: http://github-user-component.surge.sh/
 
