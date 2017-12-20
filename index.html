@@ -3,25 +3,44 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>title</title>
+		<title>Github User Comparison Tool</title>
+
+		<!-- Style Dependecies -->
 		<script src="https://use.fontawesome.com/c288d722e1.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+		<!-- Custom Stylesheets -->
 		<link rel="stylesheet" href="./styles/main.css" />
+		<link rel="stylesheet" href="./styles/form.css" />
+		<link rel="stylesheet" href="./styles/user-list/user-list-container.css" />
+		<link rel="stylesheet" href="./styles/user-list/user-card.css" />
+		<link rel="stylesheet" href="./styles/user-list/repo-list.css" />
 	</head>
 	<body>
-		<form class="form-group">
-			<input type="text" class="form-control" placeholder="put in Github username"/>
-			<button type="submit" class="btn btn-primary">Add User</button>
-		</form>
-		<div id="root">
 
+		<!-- Page Header -->
+		<div id="nav" class="container-fluid">
+			<i class="fa fa-github-square fa-5x page-header-icon" aria-hidden="true"></i><h1>Github User Comparison Tool</h1>
 		</div>
+
+		<!-- Do not add any additional HTML to the root tag.
+				Use Javascript to make additional changes to the DOM. -->
+		<div class="container">
+			<div id="root">
+			</div>
+		</div>
+
+		<!-- Javascript Dependecies -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+		<!-- Custom Javascript Files -->
+		<!-- Import all data-service files first, then classes from child level up to parent -->
 		<script src="./src/services/data-service.js"></script>
-		<script src="./src/classes/user-info.js"></script>
-		<script src="./src/classes/user-info-list.js"></script>
-		<script src="./src/classes/repo.js"></script>
-		<script src="./src/classes/repo-list.js"></script>
+		<script src="./src/classes/user-list.js"></script>
+		<script src="./src/classes/form.js"></script>
 		<script src="./src/app.js"></script>
 	</body>
 </html>

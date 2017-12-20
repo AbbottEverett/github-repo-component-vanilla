@@ -1,12 +1,36 @@
-const root = document.getElementById('root');
-const input = document.querySelector('input');
-const form = document.querySelector('form');
+(function() {
+  /**************** CLASS SUMMARY ******************/
+  /* The App class's functionality is for generating
+     high level page components and routing data. If
+     additional components are created, add references
+     to them in the constructor function and instantiate
+     them in the App's init function. If you are using this
+     component in your own project, consider moving the App
+     class ot the classes directory. */
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  let user = input.value;
-  const newRepoList = new RepoList(user);
-  // const newUserList = new UserInfoList(user);
-  // newUserList.loadUser(newUserList.apirUrl, newUserList.userList, newUserList.renderAllUsers);
-  newRepoList.loadAllRepos(newRepoList.apiUrl, newRepoList.repoList, newRepoList.renderAllRepos);
-});
+  class App {
+    constructor() {
+      this.form = null;
+      this.userListComponent = null;
+      this.docRoot = document.getElementById('root');
+    }
+    init() {
+      this.userListComponent = new UserListComponent(this.docRoot);
+      this.createForm();
+    }
+    createForm() {
+      this.form = new Form(this.userListComponent.addToUserList.bind(this.userListComponent));
+      this.form.renderForm(this.docRoot);
+    }
+    createUserListComponent(user) {
+      this.userList.push(user);
+      this.userListComponent = new UserList(this.userList);
+      this.userListComponent.renderUserList(this.docRoot);
+    }
+  }
+
+  // Initialize Application
+  let app = new App();
+  app.init();
+
+})();
