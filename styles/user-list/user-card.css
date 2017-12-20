@@ -1,0 +1,32 @@
+.user-card {
+	width: 495px;
+	margin: 10px;
+}
+
+/* Header */
+.user-card-header {
+	display: flex;
+	flex-direction: column;
+}
+
+.user-card-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.user-icon {
+	max-width: 75px;
+	max-height: 75px;
+	border-radius: 10px;
+	margin-bottom: 15px;
+}
+
+.remove-card-button {
+	height: 40px;
+}
+
+.user-card-bio {
+	text-align: justify;
+}
